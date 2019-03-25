@@ -52,14 +52,13 @@ function PasswordChecker(wrapperId, passwordInputFieldId, passwordSubmitButtonId
             //if it is long enough and has a special character - everything is fine
             if(longEnough && hasSpecialChars) {
                 this.wrapperField.removeClass(this.warningClass + ' ' + this.errorClass).addClass(this.successClass);
-                this.passwordSubmitButton.attr('disabled', false);
+                this.passwordSubmitButton.attr('disabled', false); // komplexere Umschreibung
             } else if(!hasSpecialChars && longEnough) { //if it is long enough but it has no special character set class warning
                 this.wrapperField.removeClass(this.successClass + ' ' + this.errorClass).addClass(this.warningClass);
-                this.passwordSubmitButton.attr('disabled', true);
+                this.passwordSubmitButton.attr('disabled', true); // komplexere Umschreibung
             } else { //if it is not long enough set class error
                 this.wrapperField.removeClass(this.warningClass + ' ' + this.successClass).addClass(this.errorClass);
-                this.passwordSubmitButton.attr('disabled', true);
-            }
+                this.passwordSubmitButton.attr('disabled', true); // komplexere Umschreibung
 
 
         } else {
@@ -77,7 +76,7 @@ function PasswordChecker(wrapperId, passwordInputFieldId, passwordSubmitButtonId
     this.checkForLength = function() {
         //@todo
         //have a look at javascript string methods and properties
-        return true; //this needs to be replaced!
+        return this.passwordField.value.length >= this.minLength;
     };
 
     /*
@@ -87,7 +86,8 @@ function PasswordChecker(wrapperId, passwordInputFieldId, passwordSubmitButtonId
         //@todo
         //have a look at javascript string methods and properties
         //you could probably "match" it somehow
-        return true; //this needs to be replaced!
+        var sonderzeichen = /[!$&_.:,;]/
+        return sonderzeichen.test(this.passwordField.value);
     };
     //TODO 2 end
 }
